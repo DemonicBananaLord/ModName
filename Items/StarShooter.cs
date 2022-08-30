@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using System.Drawing;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace ModName.Items
@@ -60,9 +59,13 @@ namespace ModName.Items
             {
                 Dust dust = Main.dust[Dust.NewDust(dustPos2, 0, 0, DustID.GoldFlame, 0, 0)];
                 dust.noLight = true;
-                
+
             }
             return base.UseItem(player);
+        }
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            return true;
         }
     }
 }
