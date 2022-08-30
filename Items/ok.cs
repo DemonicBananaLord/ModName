@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ModName.Items
 {
-	public class ok : ModItem
+	public class Ok : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
