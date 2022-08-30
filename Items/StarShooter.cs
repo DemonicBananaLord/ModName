@@ -63,9 +63,5 @@ namespace ModName.Items
             }
             return base.UseItem(player);
         }
-        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
-            return true;
-        }
     }
 }
