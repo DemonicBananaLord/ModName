@@ -40,13 +40,13 @@ namespace ModName.Projectiles
         public override void AI()
         {
             //Projectile.rotation = 0;
+
             if (++Projectile.velocity.Y > 20)
             {
                 Projectile.velocity.Y = 20;
                 Dust flamedust = Main.dust[Dust.NewDust(Projectile.Center, 0, 0, DustID.GoldFlame, 0, 0)];
                 flamedust.scale = 1.35f;
             }
-
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
