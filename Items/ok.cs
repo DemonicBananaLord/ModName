@@ -8,7 +8,7 @@ namespace ModName.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("OK TOppie zwaardje"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			DisplayName.SetDefault("OK Toppie zwaardje"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
 			Tooltip.SetDefault("This is a basic modded sword.");
 		}
 
@@ -30,10 +30,10 @@ namespace ModName.Items
 
 		public override void AddRecipes()
 		{
-			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.Register();
+			CreateRecipe()
+				.AddIngredient(ItemID.StoneBlock, 50)
+				.AddTile(TileID.Anvils)
+				.Register();
 		}
 	}
 }
