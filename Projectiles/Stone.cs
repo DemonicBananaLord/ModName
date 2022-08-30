@@ -29,12 +29,13 @@ namespace ModName.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            
+
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
             int i = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(0, 0), Main.rand.Next(0, 30) == 0 ? ProjectileID.SolarWhipSwordExplosion : ProjectileID.Flames, 20, 0, Main.player[Projectile.owner].whoAmI);
+            SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion);
         }
         public override void AI()
         {
@@ -43,13 +44,13 @@ namespace ModName.Projectiles
             {
                 Projectile.velocity.Y = 20;
                 Dust flamedust = Main.dust[Dust.NewDust(Projectile.Center, 0, 0, DustID.GoldFlame, 0, 0)];
-                flamedust.alpha--;
+                flamedust.scale = 1.35f;
             }
-            
+
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < Main.rand.Next(1, 8); ++i)
             {
                 Dust stonedust = Main.dust[Dust.NewDust(Projectile.Center, 0, 0, DustID.Stone, 0, 0)];
                 stonedust.scale = Main.rand.NextFloat(1f, 2.25f);

@@ -18,22 +18,22 @@ namespace ModName.Items
         }
         public override void SetDefaults()
         {
-            Item.DamageType = DamageClass.Magic;
-            Item.damage = 10;
-            Item.knockBack = 2.5f;
-            Item.height = 28;
-            Item.width = 28;
-            Item.useTime = 5;
-            Item.useAnimation = 5;
-            Item.UseSound = SoundID.Item1;
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.shoot = ModContent.ProjectileType<Projectiles.Stone>();
-            Item.autoReuse = true;
-            Item.noMelee = true;
-            Item.shootSpeed = 1;
-            Item.value = Item.sellPrice(silver: 50);
-            Item.rare = 2;
-            Item.mana = 2;
+            Item.DamageType = DamageClass.Magic;//Damage type (Melee, Magic, etc)
+            Item.damage = 10;//Damage of item
+            Item.knockBack = 2.5f;//knockback of item
+            Item.height = 28;//height of item sprite
+            Item.width = 28;//widht of item sprite
+            Item.useTime = 5;//how fast it can be used in 60 frames (so 60/5 = 12 a second)
+            Item.useAnimation = 5;//
+            Item.UseSound = SoundID.Item1;//what sound is used while using this item
+            Item.useStyle = ItemUseStyleID.HoldUp;//how the item is used (eating, mowing, swinging, etc)
+            Item.shoot = ModContent.ProjectileType<Projectiles.Stone>();//if a projectile is shot, and what type
+            Item.autoReuse = true;//allows the item to autoswing
+            Item.noMelee = true;//disables the item from dealing damage (like swords)
+            Item.shootSpeed = 1;//speed of fired projectile
+            Item.value = Item.sellPrice(silver: 50);//value of the item
+            Item.rare = 2;//rarity of the item
+            Item.mana = 2;//mana cost of the item
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -42,7 +42,7 @@ namespace ModName.Items
 
             Projectile.NewProjectile(source, spawnPos, velocity, ModContent.ProjectileType<Projectiles.Stone>(), damage, knockback, player.whoAmI);
 
-            return false;
+            return false;//disabled any vanilla excecuted code from being run, but runs code from above
         }
     }
 }
