@@ -53,5 +53,16 @@ namespace ModName.Items
                 .AddTile(TileID.Anvils)
                 .Register();
         }
+        public override bool? UseItem(Player player)
+        {
+            Vector2 dustPos2 = new(player.Center.X + Main.rand.NextFloat(-5, 5), player.Center.Y + Main.rand.NextFloat(-15, 10));
+            for (int i = 0; i < 7; i++)
+            {
+                Dust dust = Main.dust[Dust.NewDust(dustPos2, 0, 0, DustID.GoldFlame, 0, 0)];
+                dust.noLight = true;
+                
+            }
+            return base.UseItem(player);
+        }
     }
 }
