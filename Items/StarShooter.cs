@@ -25,7 +25,7 @@ namespace ModName.Items
             Item.width = 28;//widht of item sprite
             Item.useTime = 5;//how fast it can be used in 60 frames (so 60/5 = 12 a second)
             Item.useAnimation = 5;//
-            Item.UseSound = SoundID.Item1;//what sound is used while using this item
+            //Item.UseSound = SoundID.Item1;//what sound is used while using this item
             Item.useStyle = ItemUseStyleID.HoldUp;//how the item is used (eating, mowing, swinging, etc)
             Item.shoot = ModContent.ProjectileType<Projectiles.Stone>();//if a projectile is shot, and what type
             Item.autoReuse = true;//allows the item to autoswing
@@ -43,6 +43,15 @@ namespace ModName.Items
             Projectile.NewProjectile(source, spawnPos, velocity, ModContent.ProjectileType<Projectiles.Stone>(), damage, knockback, player.whoAmI);
 
             return false;//disabled any vanilla excecuted code from being run, but runs code from above
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ItemID.StoneBlock, 50)
+                .AddIngredient(ItemID.HellstoneBar, 7)
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }
