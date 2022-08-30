@@ -34,6 +34,10 @@ namespace ModName.Items
 				.AddIngredient(ItemID.StoneBlock, 50)
 				.AddTile(TileID.Anvils)
 				.Register();
+
+			Recipe asdfghj = CreateRecipe();
+			asdfghj.AddIngredient(ItemID.SandBlock);
+			asdfghj.Register();
 		}
 	}
 }
