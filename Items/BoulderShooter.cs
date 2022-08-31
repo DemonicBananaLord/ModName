@@ -35,12 +35,20 @@ namespace ModName.Items
             Item.rare = 4;//rarity of the item
             Item.mana = 7;//mana cost of the item
             Item.crit = 4;//+4 default
-            Item.scale = 3f;
+            Item.scale = 1.5f;
         }
+        public override bool AltFunctionUse(Player player) => true;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 spawnPos = new(Main.MouseWorld.X + Main.rand.Next(-100, 100), player.position.Y + Main.rand.Next(-800, -600));
-            int i = Projectile.NewProjectile(source, spawnPos, velocity, ModContent.ProjectileType<Projectiles.Boulder>(), damage, knockback, player.whoAmI);
+            if (player.altFunctionUse != 2)
+            {
+                int i = Projectile.NewProjectile(source, spawnPos, velocity, ModContent.ProjectileType<Projectiles.Boulder>(), damage, knockback, player.whoAmI);
+            }
+            else
+            {
+                //iest keols
+            }
             return false;
         }
         public override void AddRecipes()
@@ -53,6 +61,14 @@ namespace ModName.Items
                 .AddIngredient(ItemID.SoulofSight, 7)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
+        }
+        public override bool? UseItem(Player player)
+        {
+            Dust dust = Main.dust[Dust.NewDust(player.direction == 1 ? player.MountedCenter + new Vector2(Main.rand.Next(10, 15), -27.5f) : player.MountedCenter + new Vector2(Main.rand.Next(-25, -15), -27.5f), 0, 0, DustID.Stone, 0, 0, 0)];
+            dust.noGravity = true;
+            dust.scale = 1.7f;
+            player.position = new Vector2(player.position.X, player.position.Y);
+            return null;
         }
     }
 }
