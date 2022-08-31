@@ -46,6 +46,7 @@ namespace ModName.Projectiles
         {
             base.OnHitNPC(target, damage, knockback, crit);
             target.AddBuff(BuffID.Slow, 6 * 60);
+            Main.player[Projectile.owner].addDPS(damage);//Fix for Boulder damage not adding up to DPS meter
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
