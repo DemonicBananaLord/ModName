@@ -31,7 +31,7 @@ namespace ModName.Projectiles
             {
                 Projectile.rotation++;
             }
-
+            Projectile.tileCollide = ++Projectile.ai[0] > 30;
         }
         public override void Kill(int timeLeft)
         {
