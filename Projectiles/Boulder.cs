@@ -22,6 +22,7 @@ namespace ModName.Projectiles
         }
         public override void AI()
         {
+            Projectile.ai[0]++;
             if (++Projectile.velocity.Y >= 28)
             {
                 Projectile.velocity.Y = 28;
@@ -31,7 +32,6 @@ namespace ModName.Projectiles
             {
                 Projectile.rotation++;
             }
-            Projectile.tileCollide = ++Projectile.ai[0] > 30;
         }
         public override void Kill(int timeLeft)
         {
@@ -50,11 +50,11 @@ namespace ModName.Projectiles
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (Projectile.velocity.X == 0)
+            if (Projectile.velocity == Vector2.Zero)
             {
                 return true;
             }
-            return false;
+            return Projectile.ai[0] > 30;
         }
     }
 }
