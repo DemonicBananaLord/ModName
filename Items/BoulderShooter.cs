@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Security.Permissions;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -12,7 +13,8 @@ namespace ModName.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Boulder Shooter");
-            Tooltip.SetDefault("Shoots Boulders from above");
+            Tooltip.SetDefault("Shoots Boulders from the stars" +
+                "\nStone Shooter's big brother");
         }
         public override void SetDefaults()
         {
@@ -39,6 +41,17 @@ namespace ModName.Items
             Vector2 spawnPos = new(Main.MouseWorld.X + Main.rand.Next(-100, 100), player.position.Y + Main.rand.Next(-800, -600));
             int i = Projectile.NewProjectile(source, spawnPos, velocity, ModContent.ProjectileType<Projectiles.Boulder>(), damage, knockback, player.whoAmI);
             return false;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarShooter>())
+                .AddIngredient(ItemID.MeteoriteBar, 25)
+                .AddIngredient(ItemID.Boulder, 3)
+                .AddIngredient(ItemID.SoulofLight, 7)
+                .AddIngredient(ItemID.SoulofSight, 7)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }
