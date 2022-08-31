@@ -19,8 +19,6 @@ namespace ModName.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.aiStyle = 0;
-            Projectile.penetrate = 9;
         }
         public override void AI()
         {
@@ -29,17 +27,13 @@ namespace ModName.Projectiles
                 Projectile.velocity.Y = 28;
 
             }
-            //if (Projectile.velocity.Y == 0)
+            if (Projectile.velocity.Y == 0)
             {
                 Projectile.rotation++;
             }
-            
+
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            base.OnHitNPC(target, damage, knockback, crit);
-        }
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        public override void Kill(int timeLeft)
         {
             for (int i = 0; i < Main.rand.Next(4, 9); i++)
             {
@@ -47,12 +41,19 @@ namespace ModName.Projectiles
                 boulderDust.scale = Main.rand.NextFloat(1f, 2.25f);
             }
             SoundEngine.PlaySound(SoundID.Item70, Projectile.Center);
-            if (++Projectile.velocity.X > 10)
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            base.OnHitNPC(target, damage, knockback, crit);
+            target.AddBuff(BuffID.Slow, 6 * 60);
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (Projectile.velocity.X == 0)
             {
-                Projectile.velocity.X = 10;
+                return true;
             }
-            Projectile.velocity = Vector2.Zero;
-            return true;//TODO: boulders rolling not giving earrape
+            return false;
         }
     }
 }

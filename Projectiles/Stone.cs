@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using System;
+using Steamworks;
 
 namespace ModName.Projectiles
 {
@@ -29,7 +30,6 @@ namespace ModName.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            Main.NewText($"{Projectile.ai[1]}");
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
@@ -44,12 +44,12 @@ namespace ModName.Projectiles
             if (++Projectile.velocity.Y > 20)
             {
                 Projectile.velocity.Y = 20;
-                Dust flamedust = Main.dust[Dust.NewDust(Projectile.Center, 0, 0, DustID.GoldFlame, 0, 0)];//TODO: fix dust spawning on rotated projs
+                Dust flamedust = Main.dust[Dust.NewDust(Projectile.Center, 0, 0, DustID.GoldFlame, 0, 0, 0, Color.Orange)];//TODO: fix dust spawning on rotated projs
                 flamedust.scale = 1.35f;
+                flamedust.position = Projectile.Center;
             }
-            Projectile.ai[0]++;
-
-            Projectile.tileCollide = Projectile.ai[0] > 30;
+            Projectile.damage *= (int)(1 + Projectile.scale / 100);
+            Projectile.tileCollide = ++Projectile.ai[0] > 30;
 
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
