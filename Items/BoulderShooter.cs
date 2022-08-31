@@ -35,6 +35,7 @@ namespace ModName.Items
             Item.rare = 4;//rarity of the item
             Item.mana = 7;//mana cost of the item
             Item.crit = 4;//+4 default
+            Item.scale = 3f;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

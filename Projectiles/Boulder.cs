@@ -19,6 +19,8 @@ namespace ModName.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Magic;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 6;
         }
         public override void AI()
         {
@@ -31,6 +33,10 @@ namespace ModName.Projectiles
             if (Projectile.velocity.Y == 0)
             {
                 Projectile.rotation++;
+            }
+            if (Projectile.velocity.Y < 0)
+            {
+                Projectile.Kill();
             }
         }
         public override void Kill(int timeLeft)
@@ -47,6 +53,8 @@ namespace ModName.Projectiles
             base.OnHitNPC(target, damage, knockback, crit);
             target.AddBuff(BuffID.Slow, 6 * 60);
             Main.player[Projectile.owner].addDPS(damage);//Fix for Boulder damage not adding up to DPS meter
+            //target.immune[Projectile.owner] = 10;
+
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
