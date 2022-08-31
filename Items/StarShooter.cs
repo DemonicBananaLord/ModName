@@ -18,7 +18,7 @@ namespace ModName.Items
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Magic;//Damage type (Melee, Magic, etc)
-            Item.damage = 10;//Damage of item
+            Item.damage = 11;//Damage of item
             Item.knockBack = 2.5f;//knockback of item
             Item.height = 28;//height of item sprite
             Item.width = 28;//widht of item sprite
@@ -32,7 +32,8 @@ namespace ModName.Items
             Item.shootSpeed = 1;//speed of fired projectile
             Item.value = Item.sellPrice(silver: 50);//value of the item
             Item.rare = 2;//rarity of the item
-            Item.mana = 2;//mana cost of the item
+            Item.mana = 5;//mana cost of the item
+            Item.color = Color.White;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
